@@ -1,0 +1,82 @@
+# IntelliJ IDEA
+.idea/
+
+# Compiled files
+*.class
+*.jar
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Compiled Java bytecode
+/target/
+/classes/
+/*.class
+
+# Compiled Python bytecode
+__pycache__/
+
+# Compiled Ruby bytecode
+*.rbc
+*.rbo
+
+# Compiled TypeScript
+*.tsbuildinfo
+
+# Compiled JavaScript
+node_modules/
+dist/
+
+# Package files
+*.war
+*.ear
+*.nar
+*.sar
+*.rar
+
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+
+# Eclipse
+.settings/
+.metadata/
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Temp files
+*.swp
+*.swo
+*.bak
+*.backup
+*.save
+*.out
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Others
+.idea_modules/
+*.iml
+*.ipr
+*.iws
