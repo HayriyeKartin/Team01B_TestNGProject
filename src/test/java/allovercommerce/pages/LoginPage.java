@@ -5,5 +5,7 @@ public class LoginPage {
         System.out.println("Deneme");
 
         System.out.println("Deneme2");
+
+        System.out.println("Deneme3");
     }
 }
