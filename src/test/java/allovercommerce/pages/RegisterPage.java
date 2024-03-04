@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPage {
 
+
     public RegisterPage() {
         PageFactory.initElements(Driver.getDriver(),this);
     }
@@ -24,5 +25,8 @@ public class RegisterPage {
     public WebElement registerSignUpButton;
     @FindBy(xpath = "//span[.='Sign Out']")
     public WebElement registerSignOutText;
-
+    @FindBy(xpath = "(//p[@class='submit-status'])[2]")
+    public WebElement registeredText;
+    @FindBy(xpath = "//span[.='Sign In']")
+    public WebElement signInButton;
 }
