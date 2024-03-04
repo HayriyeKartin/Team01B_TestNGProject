@@ -152,4 +152,21 @@ public class ReusableMethods {
         String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
         System.out.println("Attribute Value: = " + attribute_Value);
     }
+    //JS Uyari Mesaji
+    public static String uyariMesaji(WebElement inputElement){
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        String validationMessage = (String) js.executeScript("return arguments[0].validationMessage;", inputElement);
+        System.out.println("Validation Message = "+validationMessage);
+        return validationMessage;
+    }
+    //CheckBox Temizleme
+    public static void deleteMethod(WebElement webElement) {
+
+        String codeValue = webElement.getAttribute("value");
+        for (int i = 0; i < codeValue.length(); i++) {
+            webElement.sendKeys(Keys.BACK_SPACE);
+        }
+    }
+
+
 }
