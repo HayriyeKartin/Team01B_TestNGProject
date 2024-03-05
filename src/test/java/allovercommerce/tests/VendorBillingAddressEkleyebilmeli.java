@@ -8,20 +8,15 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class VendorBillingAddressEkleyebilmeli {
 
-
-    @BeforeMethod
-    public void setUp() {
-
-    }
+    VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage = new VendorBillingAddressEkleyebilmeliPage();
 
     @Test
     public void FirstNameLastNameVeEmailAddresiOtomatikGelmeli() {
-        VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage = new VendorBillingAddressEkleyebilmeliPage();
+
         Faker faker = new Faker();
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
@@ -77,7 +72,6 @@ public class VendorBillingAddressEkleyebilmeli {
 
     @Test
     public void CountryRegionStreetAddressTownCityStateZIPCodeVePhoneGirilmeli() {
-        VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage = new VendorBillingAddressEkleyebilmeliPage();
         Faker faker = new Faker();
         Select select = new Select(vendorBillingAddressEkleyebilmeliPage.vendorAddressCountryDDM);
         // Web sitesine gidilir
@@ -116,7 +110,6 @@ public class VendorBillingAddressEkleyebilmeli {
     @Test
     public void SaveAddressButonunaTıklayarakBillingAddreseEklenmeli () {
 
-        VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage = new VendorBillingAddressEkleyebilmeliPage();
         Faker faker = new Faker();
 
         // Web sitesine gidilir
@@ -149,7 +142,6 @@ public class VendorBillingAddressEkleyebilmeli {
     @Test
     public void AddressChangedSuccessfullyMetniGörülmeli() {
 
-        VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage = new VendorBillingAddressEkleyebilmeliPage();
         Faker faker = new Faker();
 
         // Web sitesine gidilir

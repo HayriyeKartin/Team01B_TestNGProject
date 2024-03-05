@@ -7,17 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 
 public class VendorBillingAddressEkleyebilmeliPage {
 
-
     public VendorBillingAddressEkleyebilmeliPage() {
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "//span[.='Register']")
-    public WebElement registerButton;
+  //  @FindBy(xpath = "//span[.='Register']")
+  //  public WebElement registerButton;
 
-    @FindBy(xpath = "(//a[@href=\"https://allovercommerce.com/my-account-2/\"])[3]")
+    @FindBy(xpath = "(//a[@href='https://allovercommerce.com/my-account-2/'])[3]")
     public WebElement myAccountLink;
-
 
     @FindBy(css = "#username")
     public WebElement signInUserName;
