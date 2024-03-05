@@ -28,11 +28,13 @@ public class VendorGirisTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         myAccountPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfanın solunda bulunan "Stora Manager" sekmesinin görüntülendiği doğrulanır..
         Assert.assertTrue(myAccountPage.storeManagerElement.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void vendorUsernameOrEmailBosTest() {
@@ -54,6 +56,7 @@ public class VendorGirisTest {
         //"Username or email address" kutusu boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Vendor olarak giriş yapılamadığı doğrulanır..
         Assert.assertEquals(ReusableMethods.uyariMesaji(myAccountPage.vendorUsernameOrEmailBox),"Lütfen bu alanı doldurun.");
+        Driver.closeDriver();
     }
     @Test
     public void vendorPasswordBosTest() {
@@ -73,6 +76,7 @@ public class VendorGirisTest {
         //"Password" kutusu boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Vendor olarak giriş yapılamadığı doğrulanır..
         Assert.assertEquals(ReusableMethods.uyariMesaji(myAccountPage.vendorPassword),"Lütfen bu alanı doldurun.");
+        Driver.closeDriver();
     }
     @Test
     public void vendorGirisTest4() {
@@ -114,6 +118,8 @@ public class VendorGirisTest {
         Assert.assertTrue(myAccountPage.followingElement.isDisplayed());
         ReusableMethods.bekle(1);
         Assert.assertTrue(myAccountPage.logOutElement.isDisplayed());
+        ReusableMethods.bekle(1);
+        Driver.closeDriver();
 
     }
     @Test
@@ -141,7 +147,7 @@ public class VendorGirisTest {
         myAccountPage.storeManagerElement.click();
         //Store Manager sayfasındaki My Store menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.myStoreMenuElement.isDisplayed());
-
+        Driver.closeDriver();
     }
     @Test
     public void ordersMenu() {
@@ -168,6 +174,7 @@ public class VendorGirisTest {
         myAccountPage.ordersElement.click();
         // Orders sayfası açılır ve Browser Products menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.browseProductsElement.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void downloadsMenu() {
@@ -194,6 +201,7 @@ public class VendorGirisTest {
         myAccountPage.downloadsElement.click();
         // Downloads sayfası açılır ve Downloads menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.downloadsMenu.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void addressMenu() {
@@ -222,7 +230,7 @@ public class VendorGirisTest {
         Assert.assertTrue(myAccountPage.billingsAddressMenu.isDisplayed());
         // Address sayfası açılır ve Shipping Address menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.shippingAddressMenu.isDisplayed());
-
+        Driver.closeDriver();
     }
     @Test
     public void accountDetailsMenu() {
@@ -249,6 +257,7 @@ public class VendorGirisTest {
         ReusableMethods.click(myAccountPage.accountDetailsElement);
         // Account Details sayfası açılır ve Account Details menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.accountDetailsMenu.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void wishlistMenu() {
@@ -275,6 +284,7 @@ public class VendorGirisTest {
         ReusableMethods.click(myAccountPage.wishListElement);
         // Wishlist sayfası açılır ve Wishlist menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.wishlistMenu.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void supportTicketsMenu() {
@@ -301,6 +311,7 @@ public class VendorGirisTest {
         ReusableMethods.click(myAccountPage.supportTicketsElement);
         // Support Tickets sayfası açılır ve Ticket(s) menusünün görüntülendiği doğrulanır
         Assert.assertTrue(myAccountPage.ticketsMenu.isDisplayed());
+        Driver.closeDriver();
     }
     @Test
     public void followingsMenu() {
@@ -328,6 +339,7 @@ public class VendorGirisTest {
         // Followings sayfası açılır ve "You are not following any vendor yet!" yazısının görüntülendiği doğrulanır
         String expectedMessege ="You are not following any vendor yet!";
         Assert.assertEquals(myAccountPage.followingTextMenu.getText(),expectedMessege);
+        Driver.closeDriver();
     }
     @Test
     public void logoutOlma() {
@@ -354,5 +366,6 @@ public class VendorGirisTest {
         ReusableMethods.click(myAccountPage.logOutElement);
         // My account sayfası açılır ve vendor kullanıcının logout olduğu doğrulanır
         Assert.assertTrue(registerPage.signInButton.isDisplayed());
+        Driver.closeDriver();
     }
 }

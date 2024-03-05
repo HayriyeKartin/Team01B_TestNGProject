@@ -129,8 +129,8 @@ public class UrunKarsilastirmaTest {
         String expected = "(4 Products)";
         Assert.assertEquals(urunKarsilastirmaPage.urunAdedi.getText(),expected);
         ReusableMethods.click(urunKarsilastirmaPage.startCompareButton);
-
-
+        ReusableMethods.bekle(1);
+        Driver.closeDriver();
     }
     @Test
     public void test03() throws AWTException, InterruptedException {

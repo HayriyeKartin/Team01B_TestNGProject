@@ -54,6 +54,7 @@ public class MusteriAlisverisWithKuponTest {
         //"Coupon code applied successfully." yazısının görüntülendiği doğrulanır
         String expectedText = "Coupon code applied successfully.";
         Assert.assertEquals(musteriAlisverisPage.kuponUygulandiText.getText(),expectedText);
+        Driver.closeDriver();
     }
 
     @Test
@@ -94,6 +95,7 @@ public class MusteriAlisverisWithKuponTest {
         //"Sorry, this coupon is not applicable to selected products." yazısının görüntülendiği doğrulanır
         String expectedText = "Sorry, this coupon is not applicable to selected products.";
         Assert.assertEquals(musteriAlisverisPage.kuponUygulanmadiText.getText(),expectedText);
+        Driver.closeDriver();
     }
     @Test
     public void test03() throws AWTException {
@@ -179,6 +181,6 @@ public class MusteriAlisverisWithKuponTest {
         //"Thank you. Your order has been received." yazısının görüntülendiği doğrulanır
         String actualText =musteriAlisverisPage.alisverisTamamText.getText();
         Assert.assertEquals(actualText,"Thank you. Your order has been received.");
-
+        Driver.closeDriver();
     }
 }
