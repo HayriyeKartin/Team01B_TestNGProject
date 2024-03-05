@@ -59,7 +59,7 @@ public class RegisterTest {
         //Username boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerUsername),"Lütfen bu alanı doldurun.");
-
+        Driver.closeDriver();
     }
 
     @Test
@@ -83,6 +83,7 @@ public class RegisterTest {
         //Email boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerEmail),"Lütfen bu alanı doldurun.");
+        Driver.closeDriver();
     }
 
     @Test
@@ -105,7 +106,9 @@ public class RegisterTest {
         registerPage.registerSignUpButton.click();
         //Password alani boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
-        Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerPassword),"Lütfen bu alanı doldurun.");    }
+        Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerPassword),"Lütfen bu alanı doldurun.");
+        Driver.closeDriver();
+    }
     @Test
     public void registerPolicyKutusuTiklanmaz() {
         // Web sitesine gidilir
@@ -130,6 +133,7 @@ public class RegisterTest {
         String uyariMesaji ="İlerlemek istiyorsanız lütfen bu kutuyu işaretleyin.";
         // Kayıt işleminin tamamlanmadıgı dogrulanır.
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerRadioButton),uyariMesaji);
+        Driver.closeDriver();
     }
 
     //**************************    User Stor 02    ************************************************************

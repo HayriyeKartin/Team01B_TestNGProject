@@ -30,7 +30,7 @@ public class KuponOlusturmaTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
-        ReusableMethods.bekle(3);
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
@@ -86,7 +86,7 @@ public class KuponOlusturmaTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
-        ReusableMethods.bekle(3);
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
@@ -143,7 +143,7 @@ public class KuponOlusturmaTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
-        ReusableMethods.bekle(3);
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
@@ -198,7 +198,7 @@ public class KuponOlusturmaTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
-        ReusableMethods.bekle(3);
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
@@ -259,7 +259,7 @@ public class KuponOlusturmaTest {
         ReusableMethods.bekle(3);
         //Sayfanın en altında bulunan My Account sekmesine gelinir
         ReusableMethods.scrollEnd();
-        ReusableMethods.bekle(3);
+        ReusableMethods.bekle(1);
         //My Account a tıklanır
         KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
