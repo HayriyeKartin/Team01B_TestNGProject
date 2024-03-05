@@ -17,7 +17,7 @@ public class AccountDetailsDegistirmeTest {
     Faker faker =new Faker();
 
     @Test
-    public void KullanıcıHesapDetaylariniGörebilmeli() {
+    public void KullaniciHesapDetaylariniGorebilmeli() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
@@ -54,7 +54,7 @@ public class AccountDetailsDegistirmeTest {
     }
 
     @Test
-    public void kullanıcıFirstNameLastNameDisplaynameVeEmailAddressBilgileriniDeğiştirebilmeli() {
+    public void kullaniciFirstNameLastNameDisplaynameVeEmailAddressBilgileriniDegistirebilmeli() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
@@ -87,7 +87,7 @@ public class AccountDetailsDegistirmeTest {
     }
 
     @Test
-    public void KullanıcıBiographyBolumunuDoldurabilmeli () {
+    public void KullaniciBiographyBolumunuDoldurabilmeli () {
 
 
 
@@ -132,7 +132,7 @@ public class AccountDetailsDegistirmeTest {
 
 
     @Test
-    public void KullanıcıPassworduDegiştirebilmeli() {
+    public void KullaniciPassworduDegistirebilmeli() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
