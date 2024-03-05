@@ -1,6 +1,8 @@
 package allovercommerce.utilities;
 
+import allovercommerce.pages.VendorPage;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,7 +14,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ReusableMethods {
 
@@ -165,6 +169,38 @@ public class ReusableMethods {
         String codeValue = webElement.getAttribute("value");
         for (int i = 0; i < codeValue.length(); i++) {
             webElement.sendKeys(Keys.BACK_SPACE);
+        }
+    }
+
+    //US17- US20 Vendor olarak Sign In olma - gulsum
+
+
+    public static void singInVendor() {
+        VendorPage vendorPage = new VendorPage();
+        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        vendorPage.signInBox.click();
+        vendorPage.userName.sendKeys(ConfigReader.getProperty("signInUsername"),
+                Keys.TAB, ConfigReader.getProperty("signInPassword"), Keys.ENTER);
+        ReusableMethods.bekle(3);
+    }
+
+    public static void selectRandomProducts(){ //random urun/urunler sec
+
+        Random random = new Random();
+        Actions actions = new Actions(Driver.getDriver());
+
+        int randomNum = random.nextInt(32); // 0 dahil, 32 hariç
+        List<Integer> numOfNonproduct = Arrays.asList(2, 4, 5, 6, 7, 8, 9, 14, 15, 22);
+        if (!numOfNonproduct.contains(randomNum)) {
+            List<WebElement> allProducts = Driver.
+                    getDriver().
+                    findElements(By.xpath("//a[@class='woocommerce-LoopProduct-link woocommerce-loop-product__link']"));
+            WebElement randomProduct = allProducts.get(randomNum);
+            scroll(randomProduct);
+            actions.sendKeys(Keys.PAGE_DOWN);
+            click(randomProduct);
+        } else {
+            selectRandomProducts();
         }
     }
 
