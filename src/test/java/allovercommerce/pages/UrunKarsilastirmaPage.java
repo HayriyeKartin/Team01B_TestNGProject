@@ -44,13 +44,13 @@ public class UrunKarsilastirmaPage {
     public WebElement kazak5KarsilastirmaButton;
     @FindBy(xpath = "//div[@class='compare-popup-overlay']")
     public WebElement bosClick;
-    @FindBy(xpath = "(//a[@href='https://allovercommerce.com/urun/kazak/'])[4]")
+    @FindBy(xpath = "//*[@id=\"main\"]//div[1]/div[3]/div/figure/a/img")
     public WebElement siyahKazak;
-    @FindBy(xpath = "(//a[@href='https://allovercommerce.com/urun/kazak-2/'])[1]")
+    @FindBy(xpath = "//*[@id=\"main\"]//div[1]/div[2]/div/figure/a/img")
     public WebElement maviliKazak;
-    @FindBy(xpath = "(//a[@href='https://allovercommerce.com/urun/erkek-triko-kazak-2/'])[3]")
+    @FindBy(xpath = "//*[@id=\"main\"]//div[1]/div[4]/div/figure/a/img")
     public WebElement koyuGriKazak;
-    @FindBy(xpath = "(//a[@href='https://allovercommerce.com/urun/erkek-triko-kazak-3/'])[3]")
+    @FindBy(xpath = "//*[@id=\"main\"]//div[1]/div[5]/div/figure/a/img")
     public WebElement kahverengiKazak;
     @FindBy(xpath = "(//a[@href='https://allovercommerce.com/urun/kahverengi-kadin-kazak/'])[3]")
     public WebElement kadinKazak;
