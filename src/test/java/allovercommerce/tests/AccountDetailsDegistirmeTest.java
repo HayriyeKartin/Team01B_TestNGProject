@@ -17,7 +17,7 @@ public class AccountDetailsDegistirmeTest {
     Faker faker =new Faker();
 
     @Test
-    public void KullanıcıHesapDetaylariniGörebilmeli() {
+    public void KullaniciHesapDetaylariniGorebilmeli() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
