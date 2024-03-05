@@ -108,7 +108,7 @@ public class VendorBillingAddressEkleyebilmeli {
     }
 
     @Test
-    public void SaveAddressButonunaTıklayarakBillingAddreseEklenmeli () {
+    public void SaveAddressButonunaTiklayarakBillingAddreseEklenmeli () {
 
         Faker faker = new Faker();
 
@@ -140,7 +140,7 @@ public class VendorBillingAddressEkleyebilmeli {
     }
 
     @Test
-    public void AddressChangedSuccessfullyMetniGörülmeli() {
+    public void AddressChangedSuccessfullyMetniGorulmeli() {
 
         Faker faker = new Faker();
 
