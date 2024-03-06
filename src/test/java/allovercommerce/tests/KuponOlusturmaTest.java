@@ -12,16 +12,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class KuponOlusturmaTest {
+    RegisterPage registerPage=new RegisterPage();
+    MyAccountPage myAccountPage =new MyAccountPage();
+    KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
+    Faker faker =new Faker();
+
+
 
     @Test
     public void test01() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -32,7 +36,6 @@ public class KuponOlusturmaTest {
         ReusableMethods.scrollEnd();
         ReusableMethods.bekle(1);
         //My Account a tıklanır
-        KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfada Store manager butonuna tıklar
@@ -45,7 +48,6 @@ public class KuponOlusturmaTest {
         kuponOlusturmaPage.addNewKupon.click();
         // Code girilir
         //Description bölümüne açıklama girilir
-        Faker faker =new Faker();
         String code = faker.code().asin();
         String aciklama = faker.lorem().toString();
         kuponOlusturmaPage.codeBox.sendKeys(code, Keys.TAB,aciklama);
@@ -74,10 +76,8 @@ public class KuponOlusturmaTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -88,7 +88,6 @@ public class KuponOlusturmaTest {
         ReusableMethods.scrollEnd();
         ReusableMethods.bekle(1);
         //My Account a tıklanır
-        KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfada Store manager butonuna tıklar
@@ -101,7 +100,6 @@ public class KuponOlusturmaTest {
         kuponOlusturmaPage.addNewKupon.click();
         // Code kutusu boş bırakılır
         //Description bölümüne açıklama girilir
-        Faker faker =new Faker();
         String code = faker.code().asin();
         String aciklama = faker.lorem().toString();
         kuponOlusturmaPage.codeBox.sendKeys(Keys.TAB,aciklama);
@@ -131,10 +129,8 @@ public class KuponOlusturmaTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -145,7 +141,6 @@ public class KuponOlusturmaTest {
         ReusableMethods.scrollEnd();
         ReusableMethods.bekle(1);
         //My Account a tıklanır
-        KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfada Store manager butonuna tıklar
@@ -158,7 +153,6 @@ public class KuponOlusturmaTest {
         kuponOlusturmaPage.addNewKupon.click();
         // Code girilir
         //Description bölümüne herhangi bir açıklama girilmez..
-        Faker faker =new Faker();
         String code = faker.code().asin();
         String aciklama = faker.lorem().toString();
         kuponOlusturmaPage.codeBox.sendKeys(code);
@@ -186,10 +180,8 @@ public class KuponOlusturmaTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -200,7 +192,6 @@ public class KuponOlusturmaTest {
         ReusableMethods.scrollEnd();
         ReusableMethods.bekle(1);
         //My Account a tıklanır
-        KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfada Store manager butonuna tıklar
@@ -213,7 +204,6 @@ public class KuponOlusturmaTest {
         kuponOlusturmaPage.addNewKupon.click();
         // Code girilir
         //Description bölümüne açıklama girilir
-        Faker faker =new Faker();
         String code = faker.code().asin();
         String aciklama = faker.lorem().toString();
         kuponOlusturmaPage.codeBox.sendKeys(code,Keys.TAB,aciklama);
@@ -247,10 +237,8 @@ public class KuponOlusturmaTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -261,7 +249,6 @@ public class KuponOlusturmaTest {
         ReusableMethods.scrollEnd();
         ReusableMethods.bekle(1);
         //My Account a tıklanır
-        KuponOlusturmaPage kuponOlusturmaPage =new KuponOlusturmaPage();
         kuponOlusturmaPage.myAccount.click();
         //My account sayfasının açıldığı görülür
         //Sayfada Store manager butonuna tıklar
@@ -274,7 +261,6 @@ public class KuponOlusturmaTest {
         kuponOlusturmaPage.addNewKupon.click();
         // Code girilir
         //Description bölümüne açıklama girilir
-        Faker faker =new Faker();
         String code = faker.code().asin();
         String aciklama = faker.lorem().toString();
         kuponOlusturmaPage.codeBox.sendKeys(code,Keys.TAB,aciklama);

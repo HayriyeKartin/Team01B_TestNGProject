@@ -15,16 +15,24 @@ import org.testng.annotations.Test;
 import java.awt.*;
 
 public class MusteriAlisverisWithKuponTest {
+    RegisterPage registerPage = new RegisterPage();
+    UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
+    MusteriAlisverisPage musteriAlisverisPage =new MusteriAlisverisPage();
+    Actions actions =new Actions(Driver.getDriver());
+    Faker faker =new Faker();
+
+
+
+
+
 
     @Test
     public void test01() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email adresi girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -34,8 +42,6 @@ public class MusteriAlisverisWithKuponTest {
         // Shopping sayfası açılır ve searchbox a "iphone" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys(ConfigReader.getProperty("indirimliUrun"), Keys.ENTER);
         //Açılan sayfadan "Iphone 15 Pro Max" urunu seçilir
-        MusteriAlisverisPage musteriAlisverisPage =new MusteriAlisverisPage();
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(musteriAlisverisPage.iphone15ProMax).perform();
         ReusableMethods.bekle(2);
         //"Iphone 15 Pro Max" urununun üzerine gelinir ve add to card iconuna tıklanır
@@ -62,10 +68,8 @@ public class MusteriAlisverisWithKuponTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email adresi girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -75,8 +79,6 @@ public class MusteriAlisverisWithKuponTest {
         // Shopping sayfası açılır ve searchbox a "kazak" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys(ConfigReader.getProperty("indirimsizUrun"), Keys.ENTER);
         //Açılan sayfadan "KAZAK" urunu seçilir
-        MusteriAlisverisPage musteriAlisverisPage =new MusteriAlisverisPage();
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(musteriAlisverisPage.kazak1).perform();
         ReusableMethods.bekle(2);
         //"KAZAK" urununun üzerine gelinir ve add to card iconuna tıklanır
@@ -102,10 +104,8 @@ public class MusteriAlisverisWithKuponTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email adresi girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -115,8 +115,6 @@ public class MusteriAlisverisWithKuponTest {
         // Shopping sayfası açılır ve searchbox a "iphone" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys(ConfigReader.getProperty("indirimliUrun"), Keys.ENTER);
         //Açılan sayfadan "Iphone 15 Pro Max" urunu seçilir
-        MusteriAlisverisPage musteriAlisverisPage =new MusteriAlisverisPage();
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(musteriAlisverisPage.iphone15ProMax).perform();
         ReusableMethods.bekle(2);
         //"Iphone 15 Pro Max" urununun üzerine gelinir ve add to card iconuna tıklanır
@@ -137,7 +135,6 @@ public class MusteriAlisverisWithKuponTest {
         //Proceed to checkout butonuna tıklanır
         ReusableMethods.click(musteriAlisverisPage.proceedToCheckoutButton);
         //BILLING DETAILS sayfası açılır
-        Faker faker =new Faker();
         //First Name kutusuna geçerli bir veri girilir
         ReusableMethods.deleteMethod(musteriAlisverisPage.billingFirstNameBox);
         musteriAlisverisPage.billingFirstNameBox.sendKeys(faker.name().firstName());

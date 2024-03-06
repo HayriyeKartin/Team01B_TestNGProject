@@ -10,16 +10,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class VendorGirisTest {
+    RegisterPage registerPage=new RegisterPage();
+    MyAccountPage myAccountPage =new MyAccountPage();
+    Faker faker =new Faker();
+
+
+
 
     @Test
     public void vendorGirisTest() {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -41,12 +45,9 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Username or Email Address kutusu boş bırakılır
-        MyAccountPage myAccountPage =new MyAccountPage();
         // Sifre kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         myAccountPage.vendorPassword.
                 sendKeys(faker.internet().
                         password(7,12,true,true,true));
@@ -63,10 +64,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         //Username or Email Address kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusu boş bırakılır
 
@@ -83,10 +82,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage =new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -127,10 +124,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -154,10 +149,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -181,10 +174,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -208,10 +199,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -237,10 +226,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -264,10 +251,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -291,10 +276,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -318,10 +301,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
@@ -346,10 +327,8 @@ public class VendorGirisTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna vendor olarak kayıtlı olan email adresi girilir
-        MyAccountPage myAccountPage = new MyAccountPage();
         myAccountPage.vendorUsernameOrEmailBox.sendKeys(ConfigReader.getProperty("vendorEmail"));
         // Sifre kutusuna gecerli bir veri girilir
         myAccountPage.vendorPassword.sendKeys(ConfigReader.getProperty("vendorPassword"));
