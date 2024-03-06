@@ -1,6 +1,9 @@
 package allovercommerce.utilities;
 
 import allovercommerce.pages.VendorPage;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +22,46 @@ import java.util.List;
 import java.util.Random;
 
 public class ReusableMethods {
+
+    public static ExtentReports extentReports;
+    public static ExtentHtmlReporter extentHtmlReporter;
+    public static ExtentTest extentTest;
+
+    //ExtentReport
+
+    public static void createExtentReport(String testName){
+
+        //bu object i raporlari olusturmak ve yonetmek icin kullanacağız
+        extentReports = new ExtentReports();
+
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+        String path = "target/extentReport/"+date+"htmlReport.html";
+        extentHtmlReporter = new ExtentHtmlReporter(path);
+
+        //ExtentReports a Html raporlayiciyi ekler
+        //Bu raporun html formatinda olusmasini saglar
+        extentReports.attachReporter(extentHtmlReporter);
+
+        //Html raporun browser sekmesinde title kısmında goruntulenir
+        extentHtmlReporter.config().setDocumentTitle("Team02 TestNG");
+
+        //Raporun adini ayarlar, bu raporda goruntulenecek olan genel basliktir
+        extentHtmlReporter.config().setReportName("Team02 TestNG Project");
+
+        //Raporun sistem bilgi bolumune cesitli istedigimiz bilgileri ekleriz
+        extentReports.setSystemInfo("Environment","QA");
+        extentReports.setSystemInfo("Browser","Chrome");
+        extentReports.setSystemInfo("Test Automation Engineer","Rıdvan Özdemir");
+        extentReports.setSystemInfo("Test Automation Engineer","Hayriye Kartın");
+        extentReports.setSystemInfo("Test Automation Engineer","Fatih Yavuz");
+        extentReports.setSystemInfo("Test Automation Engineer","Şeyma Bilgin");
+        extentReports.setSystemInfo("Test Automation Engineer","Gülsüm Baltacı");
+        extentReports.setSystemInfo("Test Automation Engineer","Asiye Atak");
+
+        //Amazon test adinda yeni bir test olusturur ve bu teste TestSteps aciklamasini ekler
+        extentTest=extentReports.createTest(testName,"Test Steps");
+    }
+
 
     //HARD WAIT METHOD
     public static void bekle(int saniye) {

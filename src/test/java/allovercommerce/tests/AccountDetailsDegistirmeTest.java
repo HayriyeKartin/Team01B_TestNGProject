@@ -39,9 +39,8 @@ public class AccountDetailsDegistirmeTest {
         //Kullanıcı My Account sayfasında "HESAP DETAYLARI" bolümüne tiklar.
         ReusableMethods.click(accountDetailsPage.accountDetailsButton);
         //Hesap Detaylarının görüntülenebildigi dogrulanır.
-        //Assert.assertTrue(myAccountPage.firstName.isDisplayed());
+        Assert.assertTrue(accountDetailsPage.firstNameBox.isDisplayed());
 
-        Faker faker= new Faker();
 
         ReusableMethods.bekle(2000);
         accountDetailsPage.firstNameBox.sendKeys(ConfigReader.getProperty("firstName"));
@@ -49,7 +48,6 @@ public class AccountDetailsDegistirmeTest {
         accountDetailsPage.displayName.sendKeys(ConfigReader.getProperty("displayName"));
         accountDetailsPage.emailAdress.sendKeys(faker.internet().emailAddress());
         ReusableMethods.click(accountDetailsPage.saveChangesButton);
-
 
     }
 
@@ -126,8 +124,6 @@ public class AccountDetailsDegistirmeTest {
         //Biography bölümününün doldurulabildiği doğrulanır
 
         Assert.assertNotNull(accountDetailsPage.biographyTextBox.getText(),"biographyTextBox should not be empty");
-
-
     }
 
 
@@ -138,6 +134,7 @@ public class AccountDetailsDegistirmeTest {
 
         //Kullanıcı en altta bulunan My Account yazısına tıklar
         ReusableMethods.scroll(accountDetailsPage.myAccount);
+        ReusableMethods.bekle(1);
         ReusableMethods.click(accountDetailsPage.myAccount);
 
         //Kullanıcı Signin yapar

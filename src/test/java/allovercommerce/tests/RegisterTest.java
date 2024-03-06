@@ -8,32 +8,43 @@ import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static allovercommerce.utilities.ReusableMethods.extentReports;
+import static allovercommerce.utilities.ReusableMethods.extentTest;
+
 public class RegisterTest {
     RegisterPage registerPage=new RegisterPage();
     Faker faker =new Faker();
 
 
-
-
     @Test
     public void registerPozitifTest() {
+        ReusableMethods.createExtentReport("US01-TC01 Register olarak giriş yapılabilmeli ");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusuna gecerli bir veri girilir
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Kullanici geçerli bir username girer");
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Kullanici geçerli bir email girer");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Kullanici geçerli bir password girer");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("Kullanici 'I agree to the privacy policy' kutusunu isaretler");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         ReusableMethods.bekle(1);
         // Kayıt işleminin tamamlandıgını dogrulanır.
         Assert.assertTrue(registerPage.registerSignOutText.isDisplayed());
+        extentTest.pass("Kullanici kayit isleminin gerceklestigini dogrular");
+        extentReports.flush();
         ReusableMethods.bekle(3);
         Driver.closeDriver();
 
