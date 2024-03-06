@@ -88,7 +88,7 @@ public class VendorBillingAddressEkleyebilmeliPage {
     @FindBy(css = "#bzip")
     public WebElement vendorAddressPostcodeZip;
 
-    @FindBy(className = "wcfm-message wcfm-success")
+    @FindBy(className = "wcfm-message.wcfm-success")
     public WebElement vendorAddressProfileSavedSuccessfullyText;
 
 

@@ -12,7 +12,7 @@ public class AccountDetailsPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//button[@value='SUBSCRIBE']")
+    @FindBy(partialLinkText = "My Account")
     public WebElement myAccount;
 
 
@@ -31,11 +31,11 @@ public class AccountDetailsPage {
     @FindBy(id = "account_email")
     public WebElement emailAdress;
 
-    @FindBy(className = "woocommerce-Button button btn btn-dark btn-rounded btn-sm")
+    @FindBy(xpath = "//*[@class='woocommerce-Button button btn btn-dark btn-rounded btn-sm']")
     public WebElement saveChangesButton;
 
 
-    @FindBy(xpath = "//*[@id=\"tinymce\"]/p")
+    @FindBy(xpath = "//*[@id='tinymce']/p")
     public WebElement biographyTextBox;
 
     @FindBy(css = "#password_current")
