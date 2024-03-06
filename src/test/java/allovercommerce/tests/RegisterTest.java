@@ -9,6 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegisterTest {
+    RegisterPage registerPage=new RegisterPage();
+    Faker faker =new Faker();
+
+
 
 
     @Test
@@ -16,10 +20,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
@@ -44,10 +46,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusu boş bırakilir
-        Faker faker =new Faker();
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
         // Sifre kutusuna gecerli bir veri girilir
@@ -67,10 +67,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusu boş bırakılır
 
@@ -91,10 +89,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusu boş bırakilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
@@ -114,10 +110,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
@@ -143,7 +137,6 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
@@ -166,10 +159,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
@@ -190,10 +181,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("kayitliEmail"));
@@ -215,10 +204,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna geçersiz bir veri girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("invalidData"));
@@ -242,12 +229,10 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir email girilir
-        Faker faker = new Faker();
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
         // Sifre kutusuna daha önce kayıtlı olmayan bir sifre girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
