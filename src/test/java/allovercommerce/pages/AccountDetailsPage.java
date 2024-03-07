@@ -9,15 +9,28 @@ public class AccountDetailsPage {
 
 
     public AccountDetailsPage(){
+
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(partialLinkText = "My Account")
+
+    @FindBy(xpath = "//*[@id=\"menu-item-1079\"]/a")
     public WebElement myAccount;
 
+    @FindBy(css = "#username")
+    public WebElement signInUserName;
+
+    @FindBy(css = "#password")
+    public WebElement signInPassword;
+
+    @FindBy(xpath = "//button[@type='submit' and @name='login']")
+    public WebElement signInButton;
 
     @FindBy(partialLinkText = "Account details")
     public WebElement accountDetailsButton;
+
+    @FindBy(xpath = "//h4[.='Account Details']")
+    public WebElement accountDetailsText;
 
     @FindBy(id = "account_first_name")
     public WebElement firstNameBox;
@@ -26,32 +39,33 @@ public class AccountDetailsPage {
     public WebElement lastNameBox;
 
     @FindBy(id = "account_display_name")
-    public WebElement displayName;
+    public WebElement displayNameBox;
 
-    @FindBy(id = "account_email")
-    public WebElement emailAdress;
 
     @FindBy(xpath = "//*[@class='woocommerce-Button button btn btn-dark btn-rounded btn-sm']")
     public WebElement saveChangesButton;
 
+    @FindBy(id = "account_email")
+    public WebElement emailAddressButton;
 
-    @FindBy(xpath = "//*[@id='tinymce']/p")
-    public WebElement biographyTextBox;
+    @FindBy(xpath = "//iframe[@id='user_description_ifr']")
+    public WebElement biographyIframe;
 
-    @FindBy(css = "#password_current")
-    public WebElement currentPasswordBox;
-    @FindBy(css = "#password_1")
-    public WebElement newPasswordBox;
+    @FindBy(xpath = "//button[@id='user_description-html']")
+    public WebElement biographyTextButton; //text butonu
 
-    @FindBy(css = "#password_2")
-    public WebElement confirmPasswordBox;
-
-    @FindBy(xpath = "//*[.='Account details changed successfully.']")
-    public WebElement changedSuccessfullyAlert;
+    @FindBy(xpath = "//*[.='Biography']")
+    public WebElement biographyText; //scroll yapacagımız yazı
 
 
+    @FindBy(css = ".wp-editor-area")
+    public WebElement biographyPage; //yazı yazacagımız alan
 
+    @FindBy(xpath = "//*[@data-id='user_description']")
+    public WebElement metinAlani;
 
+    @FindBy(xpath = "//a[.='Account details']")
+    public WebElement accountDetails;
 
 
 
