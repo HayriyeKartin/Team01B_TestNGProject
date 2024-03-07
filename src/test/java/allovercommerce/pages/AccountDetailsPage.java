@@ -46,8 +46,7 @@ public class AccountDetailsPage {
     @FindBy(id = "account_email")
     public WebElement emailAddressButton;
 
-    @FindBy(xpath = "//div[@role='alert']")
-    public WebElement changedSuccessfullyAlert;
+
 
     @FindBy(xpath = "//iframe[@id='user_description_ifr']")
     public WebElement biographyIframe;
@@ -67,6 +66,14 @@ public class AccountDetailsPage {
 
     @FindBy(xpath = "//a[.='Account details']")
     public WebElement accountDetails;
+
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement changedSuccessfullyAlert;
+
+
+
+
+
 
 
 
