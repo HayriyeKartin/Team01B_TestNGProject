@@ -8,30 +8,43 @@ import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static allovercommerce.utilities.ReusableMethods.extentReports;
+import static allovercommerce.utilities.ReusableMethods.extentTest;
+
 public class RegisterTest {
+    RegisterPage registerPage=new RegisterPage();
+    Faker faker =new Faker();
 
 
-    @Test
+    @Test(priority = 1)
     public void registerPozitifTest() {
+        ReusableMethods.createExtentReport("US01-TC01 Register olarak giriş yapılabilmeli ");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Kullanici geçerli bir username girer");
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Kullanici geçerli bir email girer");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Kullanici geçerli bir password girer");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("Kullanici 'I agree to the privacy policy' kutusunu isaretler");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         ReusableMethods.bekle(1);
         // Kayıt işleminin tamamlandıgını dogrulanır.
         Assert.assertTrue(registerPage.registerSignOutText.isDisplayed());
+        extentTest.pass("Kullanici kayit isleminin gerceklestigini dogrular");
+        extentReports.flush();
         ReusableMethods.bekle(3);
         Driver.closeDriver();
 
@@ -39,97 +52,137 @@ public class RegisterTest {
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void registerUsernameKutusuBos() {
+        ReusableMethods.
+                createExtentReport("US01-TC02 Username alani bos birakildiginda kayit islemi gerceklesmemelidir. ( Negatif test)");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusu boş bırakilir
-        Faker faker =new Faker();
+        extentTest.info("Kullanici Username kutusunu boş bırakir");
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Kullanici geçerli bir email girer");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Kullanici geçerli bir password girer");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("Kullanici 'I agree to the privacy policy' kutusunu isaretler");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         //Username boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerUsername),"Lütfen bu alanı doldurun.");
-
+        extentTest.pass("Username boş bırakıldığ için \"Lütfen bu alanı doldurun.\" mesajı görülür\n" +
+                "Kayıt işleminin tamamlanmadığını doğrulanır");
+        extentReports.flush();
+        Driver.closeDriver();
     }
 
-    @Test
+    @Test(priority = 3)
     public void registerEmailAlaniBos() {
+        ReusableMethods.
+                createExtentReport("US01-TC03 E-Mail alani bos birakildiginda kayit islemi gerceklesmemelidir. ( Negatif test)");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Kullanici Username kutusuna gecerli veri girer");
         // Eposta adresi kutusu boş bırakılır
-
+        extentTest.info("Kullanici Email kutusunu boş bırakir");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Kullanici Password kutusuna gecerli veri girer");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("Kullanici 'I agree to the privacy policy' kutusunu isaretler");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         //Email boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerEmail),"Lütfen bu alanı doldurun.");
+        extentTest.pass("Email boş bırakıldığ için \"Lütfen bu alanı doldurun.\" mesajı görülür\n" +
+                "Kayıt işleminin tamamlanmadığını doğrulanır");
+        extentReports.flush();
+        Driver.closeDriver();
     }
 
-    @Test
+    @Test(priority = 4)
     public void registerPasswordAlaniBos() {
+        ReusableMethods.
+                createExtentReport("US01-TC04 Password alani bos birakildiginda kayit islemi gerceklesmemelidir. ( Negatif test)");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
-        // Username kutusu boş bırakilir
-        Faker faker =new Faker();
+        extentTest.info("Kullanici Register butonuna tıklar");
+        // Username kutusuna gecerli bir veri girilir
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Kullanici Username kutusuna gecerli veri girer");
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Kullanici geçerli bir email girer");
         // Sifre kutusu boş bırakılır
-
+        extentTest.info("Kullanici password kutusunu boş bırakır");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("Kullanici 'I agree to the privacy policy' kutusunu isaretler");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         //Password alani boş bırakıldığ için "Lütfen bu alanı doldurun." mesajı görülür
         //Kayıt işleminin tamamlanmadığını doğrulanır
-        Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerPassword),"Lütfen bu alanı doldurun.");    }
-    @Test
+        Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerPassword),"Lütfen bu alanı doldurun.");
+        extentTest.pass("Password alani boş bırakıldığ için \"Lütfen bu alanı doldurun.\" mesajı görülür\n" +
+                "Kayıt işleminin tamamlanmadığını doğrulanır");
+        extentReports.flush();
+        Driver.closeDriver();
+    }
+    @Test(priority = 5)
     public void registerPolicyKutusuTiklanmaz() {
+        ReusableMethods.
+                createExtentReport("US01-TC05 \"I agree to the privacy policy\" alani bos birakildiginda kayit islemi gerceklesmemelidir( Negatif test)");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusuna gecerli bir veri girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Kullanici Username kutusuna gecerli veri girer");
         // Eposta adresi kutusuna gecerli bir veri girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Kullanici geçerli bir email girer");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
         // "I agree to the privacy policy" kutusu işaretmez
-
+        extentTest.info("Kullanici \"I agree to the privacy policy\" kutusu işaretmez");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Kullanici Sign Up butonuna tıklar");
         ReusableMethods.bekle(1);
         // "I agree to the privacy policy" kutusu işaretlenmediği için
         //"İlerlemek istiyorsanız lütfen bu kutuyu işaretleyin." uyari mesajı görülür
         String uyariMesaji ="İlerlemek istiyorsanız lütfen bu kutuyu işaretleyin.";
         // Kayıt işleminin tamamlanmadıgı dogrulanır.
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerRadioButton),uyariMesaji);
+        extentTest.pass("'I agree to the privacy policy' kutusu işaretlenmediği için "+uyariMesaji+" mesajı görülür\n" +
+                "Kayıt işleminin tamamlanmadığını doğrulanır");
+        extentReports.flush();
+        Driver.closeDriver();
     }
 
     //**************************    User Stor 02    ************************************************************
@@ -139,7 +192,6 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
@@ -162,10 +214,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
@@ -186,10 +236,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("kayitliEmail"));
@@ -211,10 +259,8 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
-        Faker faker =new Faker();
         registerPage.registerUsername.sendKeys(faker.name().username());
         // Eposta adresi kutusuna geçersiz bir veri girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("invalidData"));
@@ -238,12 +284,10 @@ public class RegisterTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Register butonuna tıklanır
-        RegisterPage registerPage=new RegisterPage();
         registerPage.registerButton.click();
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir email girilir
-        Faker faker = new Faker();
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
         // Sifre kutusuna daha önce kayıtlı olmayan bir sifre girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());

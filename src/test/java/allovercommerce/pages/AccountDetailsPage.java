@@ -13,6 +13,7 @@ public class AccountDetailsPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+
     @FindBy(xpath = "//*[@id=\"menu-item-1079\"]/a")
     public WebElement myAccount;
 
@@ -40,14 +41,12 @@ public class AccountDetailsPage {
     @FindBy(id = "account_display_name")
     public WebElement displayNameBox;
 
-    @FindBy(xpath = "//button[@name='save_account_details']")
+
+    @FindBy(xpath = "//*[@class='woocommerce-Button button btn btn-dark btn-rounded btn-sm']")
     public WebElement saveChangesButton;
 
     @FindBy(id = "account_email")
     public WebElement emailAddressButton;
-
-    @FindBy(xpath = "//div[@role='alert']")
-    public WebElement changedSuccessfullyAlert;
 
     @FindBy(xpath = "//iframe[@id='user_description_ifr']")
     public WebElement biographyIframe;

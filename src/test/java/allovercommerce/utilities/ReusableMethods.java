@@ -1,12 +1,18 @@
 package allovercommerce.utilities;
 
 import allovercommerce.pages.VendorPage;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,8 +23,49 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ReusableMethods {
+
+    public static ExtentReports extentReports;
+    public static ExtentHtmlReporter extentHtmlReporter;
+    public static ExtentTest extentTest;
+
+    //ExtentReport
+
+    public static void createExtentReport(String testName){
+
+        //bu object i raporlari olusturmak ve yonetmek icin kullanacağız
+        extentReports = new ExtentReports();
+
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+        String path = "target/extentReport/"+date+"htmlReport.html";
+        extentHtmlReporter = new ExtentHtmlReporter(path);
+
+        //ExtentReports a Html raporlayiciyi ekler
+        //Bu raporun html formatinda olusmasini saglar
+        extentReports.attachReporter(extentHtmlReporter);
+
+        //Html raporun browser sekmesinde title kısmında goruntulenir
+        extentHtmlReporter.config().setDocumentTitle("Team02 TestNG");
+
+        //Raporun adini ayarlar, bu raporda goruntulenecek olan genel basliktir
+        extentHtmlReporter.config().setReportName("Team02 TestNG Project");
+
+        //Raporun sistem bilgi bolumune cesitli istedigimiz bilgileri ekleriz
+        extentReports.setSystemInfo("Environment","QA");
+        extentReports.setSystemInfo("Browser","Chrome");
+        extentReports.setSystemInfo("Test Automation Engineer","Rıdvan Özdemir");
+        extentReports.setSystemInfo("Test Automation Engineer","Hayriye Kartın");
+        extentReports.setSystemInfo("Test Automation Engineer","Fatih Yavuz");
+        extentReports.setSystemInfo("Test Automation Engineer","Şeyma Bilgin");
+        extentReports.setSystemInfo("Test Automation Engineer","Gülsüm Baltacı");
+        extentReports.setSystemInfo("Test Automation Engineer","Asiye Atak");
+
+        //Amazon test adinda yeni bir test olusturur ve bu teste TestSteps aciklamasini ekler
+        extentTest=extentReports.createTest(testName,"Test Steps");
+    }
+
 
     //HARD WAIT METHOD
     public static void bekle(int saniye) {
@@ -156,6 +203,26 @@ public class ReusableMethods {
         String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
         System.out.println("Attribute Value: = " + attribute_Value);
     }
+
+    //JS GetAttributeStringValue
+    public static String getStringValueByJS(String id, String attributeName) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
+        System.out.println("Attribute Value: = " + attribute_Value);
+        return attribute_Value;
+    }
+
+
+    public static String ddmSelectedOptionText(WebElement ddm) {
+        Select select = new Select(ddm);
+        return select.getFirstSelectedOption().getText();
+    }
+
+    public static List<String> ddmAllText(WebElement ddm) {
+        Select select = new Select(ddm);
+        return select.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+    }
+
     //JS Uyari Mesaji
     public static String uyariMesaji(WebElement inputElement){
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -201,6 +268,34 @@ public class ReusableMethods {
             click(randomProduct);
         } else {
             selectRandomProducts();
+        }
+    }
+
+    //File Upload Robot Class
+    public static void uploadFilePath(String dosyaYolu) {
+        try {
+            ReusableMethods.bekle(3); // 3 saniye bekletir. Bu, kodun başka işlemler için hazır olmasını sağlar.
+            StringSelection stringSelection = new StringSelection(dosyaYolu);
+            //Verilen Dosya yolunu bir StringSelection objectine dönüştürürüz
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+            //verilen stringSelection'i (bu durumda dosya yolu), daha sonra başka bir yere yapıştırmak üzere sistem panosuna kopyalamaktır.
+            Robot robot = new Robot();
+            // Robot sınıfından bir object olustururuz, Bu class javadan gelir ve klavye ve mouse etkileşimlerini simüle eder.
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+            // CTRL+V tuslarina basar dolayisiyla panodaki veriyi yapıştırır.
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_V);
+            // CTRL ve V tuşlarından elini kaldirir
+            robot.delay(3000);
+            // 3 saniye bekler, bu süre içerisinde yapıştırılan verinin işlenmesini sağlar.
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            // ENTER tuşuna basarak yapıştırma işlemini onaylar veya diyalog penceresini kapatır.
+            robot.delay(3000);
+            // Sonraki işlemler için ek 3 saniye bekler.
+        } catch (Exception ignored) {
+            // Herhangi bir hata oluşursa, bu hata yoksayılır.
         }
     }
 

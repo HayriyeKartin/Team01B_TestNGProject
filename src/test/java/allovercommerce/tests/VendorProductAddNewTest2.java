@@ -6,18 +6,20 @@ import allovercommerce.utilities.Driver;
 import allovercommerce.utilities.ReusableMethods;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class VendorProductAddNewTest {
+public class VendorProductAddNewTest2 {
 
-    @Test
-    public void VendorCanSeeMenus() { //Inventory, Shipping, Attributes, Linked, Seo, Advanced menüleri görülebilmeli
+    VendorPage vendorPage = new VendorPage();
+
+    @BeforeMethod
+    public void beforeTest(){
 
         //Kullanıcı Web sitesine gider
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
         //Sıgn In butonuna tıklanır
-        VendorPage vendorPage = new VendorPage();
         vendorPage.signInButton.click();
 
         //Kayıtlı username ve password ile Vendor girişi yapılır
@@ -36,6 +38,9 @@ public class VendorProductAddNewTest {
 
         //Add New butonuna tıklanır
         vendorPage.addNewButton.click();
+    }
+    @Test
+    public void VendorCanSeeMenus() { //Inventory, Shipping, Attributes, Linked, Seo, Advanced menüleri görülebilmeli
 
         //Inventory, Shipping, Attributes, Linked, Seo, Advanced menülerinin görüntülendiği doğrulanır
         ReusableMethods.scroll(vendorPage.inventoryMenuButton);
@@ -47,79 +52,35 @@ public class VendorProductAddNewTest {
         Assert.assertTrue(vendorPage.advancedMenuButton.isDisplayed());
 
     }
-
     @Test
     public void vendorCanMakeInventoryTransactions() { //Inventory işlemleri yapılabilmeli (SKU, Manage Stock, Stock status, Sold Individually)
-
-        //Kullanıcı Web sitesine gider
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Sıgn In butonuna tıklanır
-        VendorPage vendorPage = new VendorPage();
-        vendorPage.signInButton.click();
-
-        //Kayıtlı username ve password ile Vendor girişi yapılır
-        vendorPage.signInUsername.sendKeys(ConfigReader.getProperty("vendorFakeUsername"));
-        vendorPage.signInPassword.sendKeys(ConfigReader.getProperty("vendorFakePassword"));
-        vendorPage.signInButton2.click();
-
-        //Footer bölümünde bulunan My Account yazısına tıklanır
-        ReusableMethods.click(vendorPage.vendorMyAccount);
-
-        //Sol menüde yer alan Store Manager butonuna tıklanır
-        vendorPage.storeManagerButton.click();
-
-        //Sol menüde yer alan Products butonuna tıklanır
-        ReusableMethods.click(vendorPage.productsButton);
-
-        //Add New butonuna tıklanır
-        vendorPage.addNewButton.click();
 
         //Sayfanın alt bölümünde bulunan menüde Inventory butonuna tıklanır
         ReusableMethods.click(vendorPage.inventoryMenuButton);
 
         //Inventory işlemleri yapılabilmeli  (SKU, Manage Stock, Stock status, Sold Individually)
         vendorPage.stockCode.sendKeys("PC-ASUS-X1502ZA-EJ1645");
+        ReusableMethods.setAttributeJS(vendorPage.stockCodeAttributeValue, "PC-ASUS-X1502ZA-EJ1645");
+        String actualValueText = vendorPage.stockCode.getAttribute("value");
+        Assert.assertEquals(actualValueText, "PC-ASUS-X1502ZA-EJ1645");
+
+
         ReusableMethods.click(vendorPage.manageStock);
         vendorPage.stockQty.sendKeys(Keys.DELETE, "1");
+
         ReusableMethods.ddmValue(vendorPage.allowBackorders, "no");
         ReusableMethods.click(vendorPage.manageStock);
+
         ReusableMethods.ddmValue(vendorPage.stockStatus, "onbackorder");
         ReusableMethods.click(vendorPage.soldIndividually);
 
     }
-
     @Test
     public void vendorCanMakeShippingTransactions() { //Shipping işlemleri yapılabilmeli (Weight, Dimensions, Shipping class, Processing Time)
-
-        //Kullanıcı Web sitesine gider
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Sıgn In butonuna tıklanır
-        VendorPage vendorPage = new VendorPage();
-        vendorPage.signInButton.click();
-
-        //Kayıtlı username ve password ile Vendor girişi yapılır
-        vendorPage.signInUsername.sendKeys(ConfigReader.getProperty("vendorFakeUsername"));
-        vendorPage.signInPassword.sendKeys(ConfigReader.getProperty("vendorFakePassword"));
-        vendorPage.signInButton2.click();
-
-        //Footer bölümünde bulunan My Account yazısına tıklanır
-        ReusableMethods.click(vendorPage.vendorMyAccount);
-
-        //Sol menüde yer alan Store Manager butonuna tıklanır
-        vendorPage.storeManagerButton.click();
-
-        //Sol menüde yer alan Products butonuna tıklanır
-        ReusableMethods.click(vendorPage.productsButton);
-
-        //Add New butonuna tıklanır
-        vendorPage.addNewButton.click();
 
         //Sayfanın alt bölümünde bulunan menüde Shipping butonuna tıklanır
         ReusableMethods.click(vendorPage.shippingMenuButton);
 
-        //Shipping işlemleri yapılabilmeli (Weight, Dimensions, Shipping class, Processing Time)
         //Weight(kg) kutucuğuna geçerli bir değer girilir
         vendorPage.shippingWeight.sendKeys("2");
 
@@ -136,38 +97,12 @@ public class VendorProductAddNewTest {
         Assert.assertTrue(vendorPage.processingTime.getText().contains("1-3 business days"));
 
     }
-
     @Test
     public void vendorCanMakeAttributesTransactions() { //Attributes işlemleri yapılabilmeli (Color, Size)
-
-        //Kullanıcı Web sitesine gider
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Sıgn In butonuna tıklanır
-        VendorPage vendorPage = new VendorPage();
-        vendorPage.signInButton.click();
-
-        //Kayıtlı username ve password ile Vendor girişi yapılır
-        vendorPage.signInUsername.sendKeys(ConfigReader.getProperty("vendorFakeUsername"));
-        vendorPage.signInPassword.sendKeys(ConfigReader.getProperty("vendorFakePassword"));
-        vendorPage.signInButton2.click();
-
-        //Footer bölümünde bulunan My Account yazısına tıklanır
-        ReusableMethods.click(vendorPage.vendorMyAccount);
-
-        //Sol menüde yer alan Store Manager butonuna tıklanır
-        vendorPage.storeManagerButton.click();
-
-        //Sol menüde yer alan Products butonuna tıklanır
-        ReusableMethods.click(vendorPage.productsButton);
-
-        //Add New butonuna tıklanır
-        vendorPage.addNewButton.click();
 
         //Sayfanın alt bölümünde bulunan menüde Attributes butonuna tıklanır
         ReusableMethods.click(vendorPage.attributesMenuButton);
 
-        //Attributes işlemleri yapılabilmeli (Color, Size)
         //Color checkbox'a tıklanır
         ReusableMethods.click(vendorPage.colorCheckbox);
 
@@ -181,6 +116,5 @@ public class VendorProductAddNewTest {
         //Seçim menüsünden ürünün boyutu seçilir ve görüntülendiği doğrulanır
         ReusableMethods.ddmValue(vendorPage.sizeAttributeSelect, "1377");
         Assert.assertTrue(vendorPage.sizeAttributeSelect.getText().contains("31.35"));
-
     }
 }
