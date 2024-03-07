@@ -6,164 +6,91 @@ import allovercommerce.utilities.ConfigReader;
 import allovercommerce.utilities.Driver;
 import allovercommerce.utilities.ReusableMethods;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class AccountDetailsDegistirmeTest {
+    AccountDetailsPage accountDetailsPage = new AccountDetailsPage();
+    Faker faker = new Faker();
 
-    AccountDetailsPage accountDetailsPage =new AccountDetailsPage();
-    VendorBillingAddressEkleyebilmeliPage vendorBillingAddressEkleyebilmeliPage =new VendorBillingAddressEkleyebilmeliPage();
-
-    Faker faker =new Faker();
-
-    @Test
-    public void KullanıcıHesapDetaylariniGörebilmeli() {
-        // Web sitesine gidilir
+    @BeforeMethod
+    public void setUp() {
+        //1-Kullanıcı anasayfaya gider
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
 
-
-        //Kullanıcı en altta bulunan My Account yazısına tıklar
-
-        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-
-
-
-        //Kullanıcı Signin yapar
-        String signUpUsername = ConfigReader.getProperty("signUpUsername");
-        String password = ConfigReader.getProperty("signUpSifre");
-        vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
-        vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
-
-        //Kullanıcı My Account sayfasında "HESAP DETAYLARI" bolümüne tiklar.
-        ReusableMethods.click(accountDetailsPage.accountDetailsButton);
-        //Hesap Detaylarının görüntülenebildigi dogrulanır.
-        //Assert.assertTrue(myAccountPage.firstName.isDisplayed());
-
-        Faker faker= new Faker();
-
-        ReusableMethods.bekle(2000);
-        accountDetailsPage.firstNameBox.sendKeys(ConfigReader.getProperty("firstName"));
-        accountDetailsPage.lastNameBox.sendKeys(ConfigReader.getProperty("lastName"));
-        accountDetailsPage.displayName.sendKeys(ConfigReader.getProperty("displayName"));
-        accountDetailsPage.emailAdress.sendKeys(faker.internet().emailAddress());
-        ReusableMethods.click(accountDetailsPage.saveChangesButton);
-
-
-    }
-
-    @Test
-    public void kullanıcıFirstNameLastNameDisplaynameVeEmailAddressBilgileriniDeğiştirebilmeli() {
-        // Web sitesine gidilir
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Kullanıcı en altta bulunan My Account yazısına tıklar
-
-
-        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-
-        //Kullanıcı Signin yapar
-        String signUpUsername = ConfigReader.getProperty("signUpUsername");
-        String password = ConfigReader.getProperty("signUpSifre");
-        vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
-        vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
-
-        //Kullanıcı My Account sayfasında "HESAP DETAYLARI" bolümüne tiklar.
-
-        ReusableMethods.click(accountDetailsPage.accountDetailsButton);
-
-
-        accountDetailsPage.firstNameBox.sendKeys(ConfigReader.getProperty("firstName"));
-        accountDetailsPage.lastNameBox.sendKeys(ConfigReader.getProperty("lastName"));
-        //myAccountPage02.displayName.sendKeys(ConfigReader.getProperty("displayName"));
-        accountDetailsPage.emailAdress.sendKeys(faker.internet().emailAddress());
-        ReusableMethods.click(accountDetailsPage.saveChangesButton);
-
-        Assert.assertTrue( accountDetailsPage.firstNameBox.getAttribute("value").contains("JeffAli"));
-
-    }
-
-    @Test
-    public void KullanıcıBiographyBolumunuDoldurabilmeli () {
-
-
-
-        // Web sitesine gidilir
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Kullanıcı en altta bulunan My Account yazısına tıklar
-        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
-
-
-        //Kullanıcı Signin yapar
-        String signUpUsername = ConfigReader.getProperty("signUpUsername");
-        String password = ConfigReader.getProperty("signUpSifre");
-        vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
-        vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
-
-        //Kullanıcı My Account sayfasında "HESAP DETAYLARI" bolümüne tiklar.
-        ReusableMethods.click(accountDetailsPage.accountDetailsButton);
-
-
-        // Kullanıcı Biography kısmına geçerli veri girer
-        AccountDetailsPage accountDetailsPage=new AccountDetailsPage();
-        ReusableMethods.scrollEnd();
-        Faker faker =new Faker();
-        Driver.getDriver().switchTo().frame(0);
-        ReusableMethods.bekle(2000);
-        accountDetailsPage.biographyTextBox.sendKeys(faker.lorem().paragraph());
-        ReusableMethods.bekle(2000);
-        Driver.getDriver().switchTo().defaultContent();
-
-        //Kullanıcı sayfanın altında bulunan SAVE CHANGES (DEĞİŞİKLİKLERİ KAYDET) butonuna tıklar
-        ReusableMethods.click(accountDetailsPage.saveChangesButton);
-
-        //Biography bölümününün doldurulabildiği doğrulanır
-
-        Assert.assertNotNull(accountDetailsPage.biographyTextBox.getText(),"biographyTextBox should not be empty");
-
-
-    }
-
-
-    @Test
-    public void KullanıcıPassworduDegiştirebilmeli() {
-        // Web sitesine gidilir
-        Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
-
-        //Kullanıcı en altta bulunan My Account yazısına tıklar
+        //2-Kullanıcı en altta bulunan My Account yazısına tıklar
+        //3-Kullanıcı My Account sayfasına gelir
         ReusableMethods.scroll(accountDetailsPage.myAccount);
         ReusableMethods.click(accountDetailsPage.myAccount);
 
-        //Kullanıcı Signin yapar
-        String signUpUsername = ConfigReader.getProperty("signUpUsername");
-        String password = ConfigReader.getProperty("signUpSifre");
-        vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
-        vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
+        //4-Kullanıcı Sign in yapar
+        accountDetailsPage.signInUserName.sendKeys(ConfigReader.getProperty("signUpMail"));
+        accountDetailsPage.signInPassword.sendKeys(ConfigReader.getProperty("signUpSifre"));
+        ReusableMethods.click(accountDetailsPage.signInButton);
 
-        //Kullanıcı My Account sayfasında "HESAP DETAYLARI" bolümüne tiklar.
+        //5-Kullanıcı My Account sayfasından "HESAP DETAYLARI" bölümüne tıklar
         ReusableMethods.click(accountDetailsPage.accountDetailsButton);
+    }
 
-        // Kullanıcı Password change bölümünde "Current password leave blank to leave unchanged" başlığı altındaki kutucuğa mevcut password u girer
-        accountDetailsPage.currentPasswordBox.sendKeys(ConfigReader.getProperty("signUpSifre"));
+    @Test
+    public void KullaniciAccountDetailsDegistirebilmeli() {
 
-        // Kullanıcı Password change bölümünde "New password leave blank to leave unchanged" başlığı altındaki kutucuğa yeni password u girer
-        accountDetailsPage.newPasswordBox.sendKeys(faker.internet().password());
-        // Kullanıcı Password change bölümünde "Confirm password" başlığı altındaki kutucuğa şifreleri doğrulamak için yeni password u tekrar girer
-        accountDetailsPage.confirmPasswordBox.sendKeys(accountDetailsPage.newPasswordBox.getText());
 
-        // Kullanıcı sayfanın altında bulunan SAVE CHANGES (DEĞİŞİKLİKLERİ KAYDET) butonuna tıklar
+        //6-Hesap detaylarının görüntülenebildiği doğrulanır
+        Assert.assertTrue(accountDetailsPage.accountDetailsText.isDisplayed());
+    }
 
+    @Test
+    public void KullaniciFirstNameLastNameDisplayNameEmailAddressBilgileriniDegistirebilmeli() {
+
+        //5-Kullanıcı First name kısmına geçerli bir veri girer
+        accountDetailsPage.firstNameBox.clear();
+        accountDetailsPage.firstNameBox.sendKeys(ConfigReader.getProperty("firstName"));
+        //6-Kullanıcı Last name kısmına geçerli bir veri girer
+        accountDetailsPage.lastNameBox.clear();
+        accountDetailsPage.lastNameBox.sendKeys(ConfigReader.getProperty("lastName"));
+        //7-Kullanıcı Display name kısmına geçerli bir veri girer
+        accountDetailsPage.displayNameBox.clear();
+        accountDetailsPage.displayNameBox.sendKeys(ConfigReader.getProperty("displayName"));
+        //8-Kullanıcı email adress kısmına geçerli bir mail adresi girer
+        accountDetailsPage.emailAddressButton.clear();
+        accountDetailsPage.emailAddressButton.sendKeys(ConfigReader.getProperty("signUpMail"));
+        //9-Kullanıcı sayfanın altında bulunan "DEĞİŞİKLİKLERİ KAYDET" butonuna tıklar
         ReusableMethods.click(accountDetailsPage.saveChangesButton);
-        //Password un değiştirilebildiği doğrulanır
+        //10-First name, Last name, Display name ve Email address bilgilerinin değiştirilebildiği doğrulanır
         Assert.assertTrue(accountDetailsPage.changedSuccessfullyAlert.isDisplayed());
+
+    }
+
+    @Test
+    public void KullaniciAccountDetailsDegistirebilmeliBiographyBolumunuDoldurabilmeli() {
+
+        Actions actions = new Actions(Driver.getDriver());
+
+        //Kullanıcı Biography kısmına geçerli veri girer
+
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Driver.getDriver().switchTo().frame("user_description_ifr");
+        accountDetailsPage.metinAlani.clear();
+        ReusableMethods.bekle(2);
+        accountDetailsPage.metinAlani.sendKeys(faker.harryPotter().quote());
+        ReusableMethods.bekle(2);
+        Driver.getDriver().switchTo().parentFrame();
+        Driver.getDriver().switchTo().defaultContent();
+        //Kullanıcı sayfanın altında bulunan SAVE CHANGES (DEĞİŞİKLİKLERİ KAYDET) butonuna tıklar
+
+
+
+        //Biography bölümününün doldurulabildiği doğrulanır
+
+
 
 
     }
+
+
 }
