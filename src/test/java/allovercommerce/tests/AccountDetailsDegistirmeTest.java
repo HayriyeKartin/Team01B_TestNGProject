@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 
 public class AccountDetailsDegistirmeTest {
+
     AccountDetailsPage accountDetailsPage = new AccountDetailsPage();
     Faker faker = new Faker();
 
@@ -91,6 +92,8 @@ public class AccountDetailsDegistirmeTest {
 
 
     }
+
+  
 
 
 }

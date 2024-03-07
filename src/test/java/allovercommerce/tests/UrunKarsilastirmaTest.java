@@ -13,16 +13,20 @@ import org.testng.annotations.Test;
 import java.awt.*;
 
 public class UrunKarsilastirmaTest {
+    RegisterPage registerPage = new RegisterPage();
+    UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
+    Actions actions =new Actions(Driver.getDriver());
+
+
+
 
     @Test
     public void test01() throws AWTException, InterruptedException {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email ya da username girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -32,7 +36,6 @@ public class UrunKarsilastirmaTest {
         // Shopping sayfası açılır ve searchbox a "kazak" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys("kazak", Keys.ENTER);
         //Açılan sayfadan "KAZAK" urunu seçilir
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(urunKarsilastirmaPage.kazak1).perform();
         ReusableMethods.bekle(3);
         //kazak urununun üzerinde beklenir ve compare butonuna tıklanır
@@ -73,10 +76,8 @@ public class UrunKarsilastirmaTest {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email adresi girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -86,7 +87,6 @@ public class UrunKarsilastirmaTest {
         // Shopping sayfası açılır ve searchbox a "kazak" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys("kazak", Keys.ENTER);
         //Açılan sayfadan "KAZAK" urunu seçilir
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(urunKarsilastirmaPage.kazak1).perform();
         ReusableMethods.bekle(3);
         //kazak urununun üzerinde beklenir ve compare butonuna tıklanır
@@ -129,18 +129,16 @@ public class UrunKarsilastirmaTest {
         String expected = "(4 Products)";
         Assert.assertEquals(urunKarsilastirmaPage.urunAdedi.getText(),expected);
         ReusableMethods.click(urunKarsilastirmaPage.startCompareButton);
-
-
+        ReusableMethods.bekle(1);
+        Driver.closeDriver();
     }
     @Test
     public void test03() throws AWTException, InterruptedException {
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         // Sign In butonuna tıklanır
-        RegisterPage registerPage = new RegisterPage();
         registerPage.signInButton.click();
         // Eposta adresi kutusuna olarak kayıtlı olan email adresi girilir
-        UrunKarsilastirmaPage urunKarsilastirmaPage =new UrunKarsilastirmaPage();
         urunKarsilastirmaPage.usernameOrEmailBox.sendKeys(ConfigReader.getProperty("kayitliUsername"));
         // Sifre kutusuna gecerli bir veri girilir
         urunKarsilastirmaPage.passwordBox.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
@@ -150,7 +148,6 @@ public class UrunKarsilastirmaTest {
         // Shopping sayfası açılır ve searchbox a "kazak" girilir ve aratılır
         urunKarsilastirmaPage.searchBox.sendKeys("kazak", Keys.ENTER);
         //Açılan sayfadan "KAZAK" urunu seçilir
-        Actions actions =new Actions(Driver.getDriver());
         actions.moveToElement(urunKarsilastirmaPage.kazak1).perform();
         ReusableMethods.bekle(3);
         //kazak urununun üzerinde beklenir ve compare butonuna tıklanır
