@@ -94,6 +94,12 @@ public class VendorPage {
     @FindBy(css = "#sku")
     public WebElement stockCode;
 
+    @FindBy(xpath = "(//input[@placeholder=''])[5]")
+    public WebElement stockCodeAttributeValue;
+
+    @FindBy(xpath = "//input[@value='PC-ASUS-X1502ZA-EJ1645']")
+    public WebElement stockCodeValue;
+
     @FindBy(css = "#manage_stock")
     public WebElement manageStock;
 
@@ -175,6 +181,52 @@ public class VendorPage {
 
     @FindBy(xpath = "//input[@data-super_parent='402']")
     public WebElement categoriesSelect;
+
+    //Vendor olarak ürün ekleme seçeneklerini görebilmeli 1
+    @FindBy(css = "#product_type")
+    public WebElement productSelect;
+
+    @FindBy(css = "#featured_img_display")
+    public WebElement productImage;
+
+    @FindBy(css = "#__wp-uploader-id-1")
+    public WebElement productSelectFiles;
+
+    @FindBy(xpath = "//body[@data-id='excerpt']")
+    public WebElement shortDescription;
+
+    @FindBy(xpath = "//body[@data-id='description']")
+    public WebElement description;
+
+    @FindBy(xpath = "//p[.='+Add new category']")
+    public WebElement addNewCategoryButton;
+
+    @FindBy(css = "#wcfm_new_cat")
+    public WebElement categoryNameBox;
+
+    @FindBy(xpath = "//button[@data-taxonomy='product_cat']")
+    public WebElement categoryAddButton;
+
+    @FindBy(xpath = "//span[.='Laptop']")
+    public WebElement newCategory;
+
+    @FindBy(xpath = "//input[@data-super_parent='1374']")
+    public WebElement productBrandsSelect;
+
+    @FindBy(xpath = "//p[.='+Add new Product brands']")
+    public WebElement addNewProductBrands;
+
+    @FindBy(css = "#wcfm_new_product_brand")
+    public WebElement productBrandsNameBox;
+
+    @FindBy(xpath = "//button[@data-taxonomy='product_brand']")
+    public WebElement productBrandsAddButton;
+
+    @FindBy(xpath = "//li[.='Asus VivoBook']")
+    public WebElement newProductBrands;
+
+    @FindBy(xpath = "//button[.='Select']")
+    public WebElement photoAddSelectButton;
 
 
     //gulsum
