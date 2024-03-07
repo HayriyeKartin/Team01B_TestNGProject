@@ -67,6 +67,14 @@ public class AccountDetailsPage {
     @FindBy(xpath = "//a[.='Account details']")
     public WebElement accountDetails;
 
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement changedSuccessfullyAlert;
+
+
+
+
+
+
 
 
 
