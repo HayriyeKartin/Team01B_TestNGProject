@@ -187,89 +187,131 @@ public class RegisterTest {
 
     //**************************    User Stor 02    ************************************************************
 
-    @Test
+    @Test(priority = 6)
     public void KayitliBilgilerleKayitTest() {
+        ReusableMethods.createExtentReport("US02-TC01 Kullanıcının kayıtlı bir username, password, email kullanarak kayıt olamamalı");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Kullanici allovercommerce sayfasina gider");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Kullanici Register butonuna tıklar");
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
+        extentTest.info("Username kutusuna daha önce kayıtlı olan bir username girilir");
         // Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("kayitliEmail"));
+        extentTest.info("Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
+        extentTest.info("Sifre kutusuna gecerli bir veri girilir");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("\"I agree to the privacy policy\" kutusu işaretlenir");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Sign Up butonuna tıklanır");
         //Kayıt işleminin gerçekleşmediği doğrulanır
         ReusableMethods.bekle(1);
         String expectedResultText = "An account is already registered with your email address. ";
         Assert.assertTrue(registerPage.registeredText.getText().contains(expectedResultText));
+        extentTest.info(expectedResultText+" mesajı görüntülenir");
+        extentTest.pass("Kayıt işleminin gerçekleşmediği doğrulanır");
+        extentReports.flush();
         Driver.closeDriver();
     }
-    @Test
+    @Test(priority = 7)
     public void KayitliBilgilerleKayitTest2() {
+        ReusableMethods.createExtentReport("US02-TC02 Kullanıcının kayıtlı olmayan bir username, " +
+                "email ve kayıtlı olan password ile kayıt olabilmeli");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Web sitesine gidilir");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Register butonuna tıklanır");
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Username kutusuna daha önce kayıtlı olmayan bir username girilir");
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Eposta adresi kutusuna daha önce kayıtlı olmayan bir eposta adresi girilir");
         // Sifre kutusuna daha önce kayitli bir şifre girilir
         registerPage.registerPassword.sendKeys(ConfigReader.getProperty("kayitliUserPassword"));
+        extentTest.info("Sifre kutusuna daha önce kayitli bir şifre girilir");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("\"I agree to the privacy policy\" kutusu işaretlenir");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Sign Up butonuna tıklanır");
         ReusableMethods.bekle(1);
         //Kayıt işleminin gerçekleştiği doğrulanır
         Assert.assertTrue(registerPage.registerSignOutText.isDisplayed());
+        extentTest.pass("Kayıt işleminin gerçekleştiği doğrulanır");
         ReusableMethods.bekle(2);
+        extentReports.flush();
         Driver.closeDriver();
     }
-    @Test
+    @Test(priority = 8)
     public void KayitliBilgilerleKayitTest3() {
+        ReusableMethods.createExtentReport("US02-TC03 Kullanıcının kayıtlı olmayan bir username, password " +
+                "ve kayıtlı olan email kullanarak kayıt olamamalı");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Web sitesine gidilir");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Register butonuna tıklanır");
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Username kutusuna daha önce kayıtlı olmayan bir username girilir");
         // Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("kayitliEmail"));
+        extentTest.info("Eposta adresi kutusuna daha önce kayıtlı olan bir eposta adresi girilir");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Sifre kutusuna gecerli bir veri girilir");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("\"I agree to the privacy policy\" kutusu işaretlenir");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Sign Up butonuna tıklanır");
         ReusableMethods.bekle(1);
         //Kayıt işleminin gerçekleşmediği doğrulanır
         ReusableMethods.bekle(1);
         String expectedResultText = "An account is already registered with your email address. ";
         Assert.assertTrue(registerPage.registeredText.getText().contains(expectedResultText));
+        extentTest.info("'An account is already registered with your email address. ' uyarısı görüntülenir ");
+        extentTest.pass("Kayıt işleminin gerçekleşmediği doğrulanır");
+        extentReports.flush();
         Driver.closeDriver();
     }
-    @Test
+    @Test(priority = 9)
     public void KayitliBilgilerleKayitTest4() {
+        ReusableMethods.createExtentReport("US02-TC04 Kullanıcının geçersiz bir email kullanarak kayıt olamamalı");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Web sitesine gidilir");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Register butonuna tıklanır");
         // Username kutusuna daha önce kayıtlı olmayan bir username girilir
         registerPage.registerUsername.sendKeys(faker.name().username());
+        extentTest.info("Username kutusuna daha önce kayıtlı olmayan bir username girilir");
         // Eposta adresi kutusuna geçersiz bir veri girilir
         registerPage.registerEmail.sendKeys(ConfigReader.getProperty("invalidData"));
+        extentTest.info("Eposta adresi kutusuna geçersiz bir veri girilir");
         // Sifre kutusuna gecerli bir veri girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Sifre kutusuna gecerli bir veri girilir");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("\"I agree to the privacy policy\" kutusu işaretlenir");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Sign Up butonuna tıklanır");
         ReusableMethods.bekle(1);
         //Email kutusuna geçersiz bir veri girildiği için
         //"Lütfen e-posta adresine bir \"@\" işareti ekleyin. \"abc\" adresinde \"@\" eksik."
@@ -277,28 +319,44 @@ public class RegisterTest {
         String uyariMesaji ="Lütfen e-posta adresine bir \"@\" işareti ekleyin. \"abc\" adresinde \"@\" eksik.";
         //Kayıt işleminin gerçekleşmediği doğrulanır
         Assert.assertEquals(ReusableMethods.uyariMesaji(registerPage.registerEmail),uyariMesaji);
+        extentTest.info("'Lütfen e-posta adresine bir \\\"@\\\" işareti ekleyin. \\\"abc\\\" adresinde \\\"@\\\" eksik.'\n" +
+                "mesajı görüntülenir");
+        extentTest.pass("Kayıt işleminin gerçekleşmediği doğrulanır");
+        extentReports.flush();
         Driver.closeDriver();
     }
-    @Test
+    @Test(priority = 10)
     public void KayitliBilgilerleKayitTest5() {
+        ReusableMethods.createExtentReport("US02-TC05 Kullanıcının kayıtlı bir usernameve kayırtlı olmayan " +
+                "password, email kullanarak kayıt olamamalı");
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
+        extentTest.info("Web sitesine gidilir");
         // Register butonuna tıklanır
         registerPage.registerButton.click();
+        extentTest.info("Register butonuna tıklanır");
         // Username kutusuna daha önce kayıtlı olan bir username girilir
         registerPage.registerUsername.sendKeys(ConfigReader.getProperty("kayitliUsername"));
+        extentTest.info("Username kutusuna daha önce kayıtlı olan bir username girilir");
         // Eposta adresi kutusuna daha önce kayıtlı olmayan bir email girilir
         registerPage.registerEmail.sendKeys(faker.internet().emailAddress());
+        extentTest.info("Eposta adresi kutusuna daha önce kayıtlı olmayan bir email girilir");
         // Sifre kutusuna daha önce kayıtlı olmayan bir sifre girilir
         registerPage.registerPassword.sendKeys(faker.internet().password());
+        extentTest.info("Sifre kutusuna daha önce kayıtlı olmayan bir sifre girilir");
         // "I agree to the privacy policy" kutusu işaretlenir
         registerPage.registerRadioButton.click();
+        extentTest.info("\"I agree to the privacy policy\" kutusu işaretlenir");
         // Sign Up butonuna tıklanır
         registerPage.registerSignUpButton.click();
+        extentTest.info("Sign Up butonuna tıklanır");
         //Kayıt işleminin gerçekleşmediği doğrulanır
         ReusableMethods.bekle(1);
         String expectedResultText = "An account is already registered with that username. Please choose another.";
         Assert.assertTrue(registerPage.registeredText.getText().contains(expectedResultText));
+        extentTest.info(expectedResultText+" mesajını görüntülenir");
+        extentTest.pass("Kayıt işleminin gerçekleşmediği doğrulanır");
+        extentReports.flush();
         Driver.closeDriver();
     }
 
