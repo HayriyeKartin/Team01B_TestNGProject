@@ -97,9 +97,6 @@ public class VendorPage {
     @FindBy(xpath = "(//input[@placeholder=''])[5]")
     public WebElement stockCodeAttributeValue;
 
-    @FindBy(xpath = "//input[@value='PC-ASUS-X1502ZA-EJ1645']")
-    public WebElement stockCodeValue;
-
     @FindBy(css = "#manage_stock")
     public WebElement manageStock;
 
@@ -173,11 +170,20 @@ public class VendorPage {
     @FindBy(css = "#regular_price")
     public WebElement priceBox;
 
+    @FindBy(xpath = "(//input[@value=''])[4]")
+    public WebElement priceAttributeValue;
+
     @FindBy(css = "#sale_price")
     public WebElement salePriceBox;
 
+    @FindBy(xpath = "(//input[@value=''])[5")
+    public WebElement salePriceAttributeValue;
+
     @FindBy(css = "#pro_title")
     public WebElement productTitle;
+
+    @FindBy(xpath = "(//input[@value=''])[1]")
+    public WebElement productTitleAttributeValue;
 
     @FindBy(xpath = "//input[@data-super_parent='402']")
     public WebElement categoriesSelect;
@@ -188,6 +194,15 @@ public class VendorPage {
 
     @FindBy(css = "#featured_img_display")
     public WebElement productImage;
+
+    @FindBy(css = "#gallery_img_gimage_0_display")
+    public WebElement galleryImage;
+
+    @FindBy(xpath = "(//img[@draggable='false'])[1]")
+    public WebElement mediaLibraryImage;
+
+    @FindBy(xpath = "//button[.='Add to Gallery']")
+    public WebElement addToGalleryButton;
 
     @FindBy(css = "#__wp-uploader-id-1")
     public WebElement productSelectFiles;
