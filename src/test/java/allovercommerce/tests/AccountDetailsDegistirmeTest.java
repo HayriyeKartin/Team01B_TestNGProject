@@ -83,17 +83,32 @@ public class AccountDetailsDegistirmeTest {
         Driver.getDriver().switchTo().parentFrame();
         Driver.getDriver().switchTo().defaultContent();
         //Kullanıcı sayfanın altında bulunan SAVE CHANGES (DEĞİŞİKLİKLERİ KAYDET) butonuna tıklar
-
-
+        ReusableMethods.click(accountDetailsPage.saveChangesButton);
 
         //Biography bölümününün doldurulabildiği doğrulanır
-
-
+        Driver.getDriver().switchTo().frame("user_description_ifr");
+        ReusableMethods.bekle(2);
+        Assert.assertNotNull(accountDetailsPage.metinAlani.getText());
 
 
     }
 
-  
+    @Test
+    public void KullaniciPasswordudegistirebilmeli() {
+        // Kullanıcı Password change bölümünde "Current password leave blank to leave unchanged" başlığı altındaki kutucuğa mevcut password u girer
+        accountDetailsPage.currentPassword.sendKeys(ConfigReader.getProperty("signUpSifre"));
 
+        // Kullanıcı Password change bölümünde "New password leave blank to leave unchanged" başlığı altındaki kutucuğa yeni password u girer
+        accountDetailsPage.newPassword.sendKeys(ConfigReader.getProperty("yeniSifre"));
 
+        // Kullanıcı Password change bölümünde "Confirm password" başlığı altındaki kutucuğa şifreleri doğrulamak için yeni password u tekrar girer
+        accountDetailsPage.confirmPassword.sendKeys(ConfigReader.getProperty("yeniSifre"));
+
+        // Kullanıcı sayfanın altında bulunan SAVE CHANGES (DEĞİŞİKLİKLERİ KAYDET) butonuna tıklar
+        ReusableMethods.click(accountDetailsPage.saveChangesButton);
+
+        //Password un değiştirilebildiği doğrulanır
+        Assert.assertTrue(accountDetailsPage.changedSuccessfullAlert.isDisplayed());
+
+    }
 }

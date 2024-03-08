@@ -48,11 +48,14 @@ public class VendorBillingAddressEkleyebilmeliPage {
     @FindBy(css = "#last_name")
     public WebElement vendorPersonalLastName;
 
-    @FindBy(css = "#email")
+    @FindBy(xpath = "//input[@id='email']")
     public WebElement vendorPersonalEmail;
 
     @FindBy(css = "#password")
     public WebElement vendorPersonalPassword;
+
+    @FindBy(id = "password_strength")
+    public WebElement vendorPersonalPaawordStrength;
 
 
     @FindBy(css = "#bfirst_name")
@@ -76,7 +79,7 @@ public class VendorBillingAddressEkleyebilmeliPage {
     @FindBy(css = "#baddr_2")
     public WebElement vendorAddressAddress2;
 
-    @FindBy(css = "#select2-bcountry-container")
+    @FindBy(css = "#bcountry")
     public WebElement vendorAddressCountryDDM;
 
     @FindBy(css = "#bcity")
@@ -88,7 +91,7 @@ public class VendorBillingAddressEkleyebilmeliPage {
     @FindBy(css = "#bzip")
     public WebElement vendorAddressPostcodeZip;
 
-    @FindBy(className = "wcfm-message.wcfm-success")
+    @FindBy(xpath = "//div[.='Profile saved successfully']")
     public WebElement vendorAddressProfileSavedSuccessfullyText;
 
 
