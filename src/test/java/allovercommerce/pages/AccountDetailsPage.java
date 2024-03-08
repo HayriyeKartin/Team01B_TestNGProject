@@ -71,7 +71,17 @@ public class AccountDetailsPage {
     public WebElement changedSuccessfullyAlert;
 
 
+     @FindBy(css = "#password_current")
+    public WebElement currentPassword;
 
+     @FindBy(css = "#password_1")
+    public WebElement newPassword;
+
+     @FindBy(css = "#password_2")
+    public WebElement confirmPassword;
+
+     @FindBy(xpath = "//div[@role='alert']")
+    public WebElement changedSuccessfullAlert;
 
 
 

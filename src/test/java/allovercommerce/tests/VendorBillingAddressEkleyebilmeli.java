@@ -5,6 +5,7 @@ import allovercommerce.utilities.ConfigReader;
 import allovercommerce.utilities.Driver;
 import allovercommerce.utilities.ReusableMethods;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,13 +27,13 @@ public class VendorBillingAddressEkleyebilmeli {
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
 
         //Vendor Signin yapar
-        String signUpUsername = ConfigReader.getProperty("vendorMail");
-        String password = ConfigReader.getProperty("vendorPasswordd");
+        String signUpUsername = ConfigReader.getProperty("signUpMail");
+        String password = ConfigReader.getProperty("signUpSifre");
         vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
         vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
 
-        //Vendor Store Manger butonuna tıklar
+        //Vendor Store Manager butonuna tıklar
 
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.storeManagerButton);
 
@@ -48,8 +49,9 @@ public class VendorBillingAddressEkleyebilmeli {
         vendorBillingAddressEkleyebilmeliPage.vendorPersonalLastName.sendKeys(ConfigReader.getProperty("lastName"));
         ReusableMethods.bekle(2);
         //Profil manager sayfasında e-mail ve password kısmının otomatik olarak gelip gelmediği kontrol edilir
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value").contains("kingcharles.lucy@farmoaks.com"));
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalPassword.getAttribute("value").isEmpty());
+        System.out.println("vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getText() = " + vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value"));
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value").contains("kishawn.elimelech@farmoaks.com"));
+        Assert.assertFalse(vendorBillingAddressEkleyebilmeliPage.vendorPersonalPaawordStrength.getText().contains("Strong"));
         //Save butonuna tıklanır
 
         ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.vendorSave);
@@ -60,9 +62,9 @@ public class VendorBillingAddressEkleyebilmeli {
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorPersonelButton);
         //Profil manager sayfasında First Name/Last Name bilgilerinin otomatik olarak geldiği doğrulanır
         ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail);
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalFirstName.getAttribute("value").contains("kingcharles"));
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalLastName.getAttribute("value").contains("lucy"));
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value").contains("kingcharles.lucy@farmoaks.com"));
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalFirstName.getAttribute("value").contains("Ali"));
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalLastName.getAttribute("value").contains("Can"));
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value").contains("kishawn.elimelech@farmoaks.com"));
 
 
 
@@ -73,26 +75,30 @@ public class VendorBillingAddressEkleyebilmeli {
     @Test
     public void CountryRegionStreetAddressTownCityStateZIPCodeVePhoneGirilmeli() {
         Faker faker = new Faker();
-        Select select = new Select(vendorBillingAddressEkleyebilmeliPage.vendorAddressCountryDDM);
         // Web sitesine gidilir
         Driver.getDriver().get(ConfigReader.getProperty("allovercommerceUrl"));
         //Vendor en altta bulunan My Account yazısına tıklar
         ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
         //Vendor Signin yapar
-        String signUpUsername = ConfigReader.getProperty("vendorMail");
-        String password = ConfigReader.getProperty("vendorPasswordd");
+        String signUpUsername = ConfigReader.getProperty("signUpMail");
+        String password = ConfigReader.getProperty("signUpSifre");
         vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
         vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
         //Vendor Store Manger butonuna tıklar
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.storeManagerButton);
         //Vendor profil resminin üstüne tıklar
+        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorProfilButton);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorAdressButton);
         //Profil manager sayfasında Address kısmındaki Address 1 ve Address 2 bilgilerine Street Address bilgisi girilir
         vendorBillingAddressEkleyebilmeliPage.vendorAddressAddress1.sendKeys(faker.address().fullAddress());
         vendorBillingAddressEkleyebilmeliPage.vendorAddressAddress2.sendKeys(faker.address().fullAddress());
         //Profil manager sayfasında adress kısmındaki Country /City-Town bilgileri girilir
+        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.vendorAdressCityTown);
+        ReusableMethods.bekle(2);
+        WebElement ddm=vendorBillingAddressEkleyebilmeliPage.vendorAddressCountryDDM;
+        Select select=new Select(ddm);
         select.selectByIndex(5);
         //Profil manager sayfasında adress kısmındaki State/Country bilgileri girilir
         vendorBillingAddressEkleyebilmeliPage.vendorAdressCityTown.sendKeys(faker.address().city());
@@ -102,6 +108,7 @@ public class VendorBillingAddressEkleyebilmeli {
         //Save buttonuna tıklanır
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorSave);
         //Profile saved successfully yazısı ile Address kısmındaki bilgilerin kayıt yapılabildigi dogrulanır.
+        ReusableMethods.bekle(1);
         Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorAddressProfileSavedSuccessfullyText.isDisplayed());
 
 
@@ -174,6 +181,6 @@ public class VendorBillingAddressEkleyebilmeli {
     public void tearDown() {
 
         ReusableMethods.bekle(2);
-        Driver.closeDriver();
+        //Driver.closeDriver();
     }
 }
