@@ -7,8 +7,10 @@ import allovercommerce.utilities.ReusableMethods;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class VendorShippingAddressTest {
+public class VendorAddShippingAddressTest {
 
+    //US13 Vendor Shipping Adress (Teslimat Adresi)  ekleyebilmeli
+    //(My Account - Adressses - Shipping Address)
     @Test
     public void vendorCanAddShippingAddress() {
 
