@@ -55,7 +55,7 @@ public class VendorBillingAddressEkleyebilmeliPage {
     public WebElement vendorPersonalPassword;
 
     @FindBy(id = "password_strength")
-    public WebElement vendorPersonalPaawordStrength;
+    public WebElement vendorPersonalPaswordStrength;
 
 
     @FindBy(css = "#bfirst_name")
@@ -108,6 +108,24 @@ public class VendorBillingAddressEkleyebilmeliPage {
 
     @FindBy(xpath = "//input[@name='wcfm_email_verified_button']")
     public WebElement reSendCode;
+
+    @FindBy(xpath = "//a[.='Addresses']")
+    public WebElement vendorAddressButton;
+
+    @FindBy(xpath = "//a[.='Edit Your Billing Address']")
+    public WebElement editYourBillingAddress;
+
+    @FindBy(xpath = "//input[@id='billing_address_1']")
+    public WebElement streetAddress;
+
+    @FindBy(xpath = "//button[@name='save_address']")
+    public WebElement saveButton;
+
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement addressChangedAlert;
+
+    @FindBy(xpath = "//table//tr[2]//td[1]")
+    public WebElement addressTable;
 
 
 }
