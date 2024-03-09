@@ -51,7 +51,7 @@ public class VendorBillingAddressEkleyebilmeli {
         //Profil manager sayfasında e-mail ve password kısmının otomatik olarak gelip gelmediği kontrol edilir
         System.out.println("vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getText() = " + vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value"));
         Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorPersonalEmail.getAttribute("value").contains("kishawn.elimelech@farmoaks.com"));
-        Assert.assertFalse(vendorBillingAddressEkleyebilmeliPage.vendorPersonalPaawordStrength.getText().contains("Strong"));
+        Assert.assertFalse(vendorBillingAddressEkleyebilmeliPage.vendorPersonalPaswordStrength.getText().contains("Strong"));
         //Save butonuna tıklanır
 
         ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.vendorSave);
@@ -157,30 +157,34 @@ public class VendorBillingAddressEkleyebilmeli {
         ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.myAccountLink);
         //Vendor Signin yapar
-        String signUpUsername = ConfigReader.getProperty("vendorMail");
-        String password = ConfigReader.getProperty("vendorPasswordd");
+        String signUpUsername = ConfigReader.getProperty("signUpMail");
+        String password = ConfigReader.getProperty("signUpSifre");
         vendorBillingAddressEkleyebilmeliPage.signInUserName.sendKeys(signUpUsername);
         vendorBillingAddressEkleyebilmeliPage.password.sendKeys(password);
         ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.signInButton);
-        //Vendor Store Manger butonuna tıklar
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.storeManagerButton);
-        //Vendor profil resminin üstüne tıklar
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorProfilButton);
-        //address butonuna tıklanır
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorAdressButton);
-        //State/Country kısmına bilgi eklenebildigi dogrulanır
-        vendorBillingAddressEkleyebilmeliPage.vendorAddressStateCountry.sendKeys("ANKARA");
-        //Save Address butonuna tıklanır ve Fatura Adresi bilgileri eklendiği doğrulanır
-        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorSave);
-        //Profile saved successfully yazısı ile Address kısmındaki bilgilerin kayıt yapılabildigi dogrulanır.
-        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.vendorAddressProfileSavedSuccessfullyText.isDisplayed());
-
+        //Vendor Addresses butonuna tıklar
+        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.vendorAddressButton);
+        //Addresses sayfasından Billing Address alanının en alt kısmındaki Edit Your Shipping Address' e tıklanır
+        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.editYourBillingAddress);
+        //Street address kısmında address değişikliği yapılır
+        vendorBillingAddressEkleyebilmeliPage.streetAddress.clear();
+        vendorBillingAddressEkleyebilmeliPage.streetAddress.sendKeys("Bahar sk. Eylul apt. No:29 ISTANBUL");
+        //SAVE ADDRESS butonuna tiklanir
+        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.saveButton);
+        ReusableMethods.click(vendorBillingAddressEkleyebilmeliPage.saveButton);
+        ReusableMethods.bekle(2);
+        //Address changed successfully iletisi görüntülenir.
+        ReusableMethods.scroll(vendorBillingAddressEkleyebilmeliPage.addressChangedAlert);
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.addressChangedAlert.isDisplayed());
+        //Billing Address alanında güncelleme yapılabildiği doğrulanır.
+        ReusableMethods.bekle(2);
+        Assert.assertTrue(vendorBillingAddressEkleyebilmeliPage.addressTable.getText().contains("Bahar sk. Eylul apt. No:29 ISTANBUL"));
     }
 
     @AfterMethod
     public void tearDown() {
 
         ReusableMethods.bekle(2);
-        //Driver.closeDriver();
+        Driver.closeDriver();
     }
 }
