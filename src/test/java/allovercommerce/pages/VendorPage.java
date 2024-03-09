@@ -192,16 +192,19 @@ public class VendorPage {
     @FindBy(css = "#product_type")
     public WebElement productSelect;
 
+    @FindBy(css = "#insert-media-button")
+    public WebElement addMediaScrool;
+
     @FindBy(css = "#featured_img_display")
     public WebElement productImage;
 
     @FindBy(css = "#gallery_img_gimage_0_display")
     public WebElement galleryImage;
 
-    @FindBy(xpath = "(//img[@draggable='false'])[1]")
+    @FindBy(xpath = "//li[@data-id='52225']")
     public WebElement mediaLibraryImage;
 
-    @FindBy(xpath = "//button[.='Add to Gallery']")
+    @FindBy(xpath = "(//button[@class='button media-button button-primary button-large media-button-select'])[2]")
     public WebElement addToGalleryButton;
 
     @FindBy(css = "#__wp-uploader-id-1")
@@ -242,6 +245,33 @@ public class VendorPage {
 
     @FindBy(xpath = "//button[.='Select']")
     public WebElement photoAddSelectButton;
+
+    @FindBy(xpath = "//div[.='Downloadable']")
+    public WebElement downloadableMenuButton;
+
+    @FindBy(css = "#downloadable_files_name_0")
+    public WebElement downloadableNameBox;
+
+    @FindBy(css = "#downloadable_files_file_0_button")
+    public WebElement downloadableFileUpload;
+
+    @FindBy(css = "#wcfm_products_simple_submit_button")
+    public WebElement addProductSubmitButton;
+
+    @FindBy(xpath = "(//button[.='Select Files'])[3]")
+    public WebElement uploadsSelectFilesButton;
+
+    @FindBy(xpath = "(//button[@id='menu-item-upload'])[3]")
+    public WebElement chooseMediaUploadFiles;
+
+    @FindBy(xpath = "(//button[.='Select'])[2]")
+    public WebElement fileSelectButton;
+
+    @FindBy(xpath = "//div[@class='wcfm_menu_items wcfm_menu_wcfm-products']")
+    public WebElement afterAddProduct;
+
+    @FindBy(xpath = "//input[@name='bulk_action_checkbox[]']")
+    public WebElement newProductCheckbox;
 
 
     //gulsum

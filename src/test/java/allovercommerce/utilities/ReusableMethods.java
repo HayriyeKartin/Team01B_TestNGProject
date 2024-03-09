@@ -34,7 +34,6 @@ public class ReusableMethods {
     //ExtentReport
 
     public static void createExtentReport(String testName){
-
         //bu object i raporlari olusturmak ve yonetmek icin kullanacağız
         extentReports = new ExtentReports();
 
@@ -140,9 +139,10 @@ public class ReusableMethods {
     public static void screenShot(String name) {
         String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format( LocalDateTime.now() );
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
-        String dosyaYolu = System.getProperty("user.dir") + "/src/test/java/techproed/testOutputs/screenshots/" + name + date + ".png";
+        String dosyaYolu = System.getProperty("user.dir") + "/src/test/java/allovercommerce/testOutPuts/screenshots/" + name + date + ".png";
         try {
             Files.write(Paths.get(dosyaYolu),ts.getScreenshotAs(OutputType.BYTES));
+            extentTest.addScreenCaptureFromPath(System.getProperty("user.dir")+"\\"+dosyaYolu);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -298,6 +298,7 @@ public class ReusableMethods {
             // Herhangi bir hata oluşursa, bu hata yoksayılır.
         }
     }
+
 
 
 }

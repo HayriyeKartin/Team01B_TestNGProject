@@ -9,8 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class VendorProductAddNewTest2 {
+public class VendorAddNewProductTest2 {
 
+    //US15 Vendor olarak ürün ekleme seçeneklerini görebilmeli 2
+    // (My Account - Store Manager - Product - Add New)
     VendorPage vendorPage = new VendorPage();
 
     @BeforeMethod
